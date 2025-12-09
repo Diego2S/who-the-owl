@@ -1,0 +1,41 @@
+import pgzrun
+import random 
+
+# game screen
+
+WIDTH = 800
+HEIGHT = 600
+
+# background
+
+bg = Actor("background_800x600") # type: ignore
+
+
+# who
+
+who = Actor("who2") 
+who.x = 400
+who.y = 600
+
+candy = Actor("candy2")
+candy.x = random.randint(20,780)
+candy.y = 0
+
+
+ant = Actor("ant2")
+ant.x = random.randint(20,780)
+ant.y = 0
+
+bomb = Actor("bomb2")
+bomb.x = random.randint(20,780)
+bomb.y = 0
+
+def draw():
+    bg.draw()
+    who.draw()
+    candy.draw()
+    bomb.draw()
+    ant.draw()
+
+
+pgzrun.go()
