@@ -6,7 +6,8 @@ import random
 WIDTH = 800
 HEIGHT = 600
 WHITE = 255,255,255
-# 
+
+# função de posições aleatorias
 def R():
     return random.randint(20, 780)
 
@@ -41,10 +42,18 @@ score = 0
 lives = 3
 game_over = False
 dead =False
+playbackground = True
+
+def on_mouse_move(pos):
+    x, y = pos
+    who.x = x
 
 
 def draw():
     bg.draw()
+    
+
+
 
     if game_over:
         screen.draw.text("Game Over",(230,200),color=(WHITE),fontname="publicpixel",fontsize=30)
@@ -57,21 +66,18 @@ def draw():
     screen.draw.text("Lives: "+ str(lives),(650,10),color=(WHITE),fontname="publicpixel",fontsize=15)
 
 def update():
-    global score,lives ,game_over, dead
+    global score,lives ,game_over, dead, playbackground
+    
     
     
     # mover owl
-    if keyboard.left:
-        who.x -= 5
-    if keyboard.right:
-        who.x += 5
-
-    if who.x < 60:
-        who.x = 60
-    if who.x > 740:
-        who.x = 740
+    
 
     #candy
+
+    if score <= 0:
+        score = 0
+
     candy.y += 4 + score / 4
     
     if candy.y > 600:
@@ -119,8 +125,11 @@ def update():
         bomb.y = 0
         if dead == False:
             sounds.gameover.play()
+            music.stop()
         dead =True
 
 
+
+music.play("background.wav")
 
 pgzrun.go()
