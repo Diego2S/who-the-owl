@@ -10,7 +10,7 @@ WHITE = 255,255,255
 game_state = "menu"   # menu -> playing -> gameover
 music_on = True
 
-def R():
+def get_random_x():
     return random.randint(20, 780)
 
 # background
@@ -23,15 +23,15 @@ who.x = 400
 who.y = 550
 
 candy = Actor("candy2")
-candy.x = R()
+candy.x = get_random_x()
 candy.y = 0
 
 ant = Actor("ant2")
-ant.x = R()
+ant.x = get_random_x()
 ant.y = 0
 
 bomb = Actor("bomb2")
-bomb.x = R()
+bomb.x = get_random_x()
 bomb.y = 0
 
 # Variáveis
@@ -138,36 +138,36 @@ def update():
         
     candy.y += 4 + score / 4
     if candy.y > 600:
-        candy.x = R()
+        candy.x = get_random_x()
         candy.y = 0
 
     if candy.colliderect(who):
         sounds.colliderect.play()
-        candy.x = R()
+        candy.x = get_random_x()
         candy.y = 0
         score += 1
 
     # ant
     ant.y += 4 + score/4
     if ant.y > 600:
-        ant.x = R()
+        ant.x = get_random_x()
         ant.y = 0
 
     if ant.colliderect(who):
         sounds.lose.play()
-        ant.x = R()
+        ant.x = get_random_x()
         ant.y = 0
         score -= 1
 
     # bomb
     bomb.y += 4 + score/4
     if bomb.y > 600:
-        bomb.x = R()
+        bomb.x = get_random_x()
         bomb.y = 0
 
     if bomb.colliderect(who):
         sounds.explosao.play()
-        bomb.x = R()
+        bomb.x = get_random_x()
         bomb.y = 0
         score -= 5
         lives -= 1
@@ -188,9 +188,9 @@ def reset_game():
     global score, lives
     score = 0
     lives = 3
-    candy.x = R(); candy.y = 0
-    ant.x = R(); ant.y = 0
-    bomb.x = R(); bomb.y = 0
+    candy.x = get_random_x(); candy.y = 0
+    ant.x = get_random_x(); ant.y = 0
+    bomb.x = get_random_x(); bomb.y = 0
     who.x = 400
 
 
